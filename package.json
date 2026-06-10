@@ -1,0 +1,21 @@
+﻿
+{
+
+  "name": "mcp-test",
+
+  "version": "1.0.0",
+
+  "description": "MCP servers: Playwright and Firecrawl",
+
+  "private": true,
+
+  "dependencies": {
+
+    "@playwright/mcp": "^0.0.76",
+
+    "firecrawl-mcp": "^3.20.4"
+
+  }
+
+}
+

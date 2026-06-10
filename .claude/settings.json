@@ -1,0 +1,33 @@
+﻿
+{
+
+  "mcpServers": {
+
+    "playwright": {
+
+      "command": "npx",
+
+      "args": ["@playwright/mcp@latest"],
+
+      "env": {}
+
+    },
+
+    "firecrawl": {
+
+      "command": "npx",
+
+      "args": ["firecrawl-mcp@latest"],
+
+      "env": {
+
+        "FIRECRAWL_API_KEY": "$fc-2be49d85835840e5a2d4ef56275e4d62"
+
+      }
+
+    }
+
+  }
+
+}
+
