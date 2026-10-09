@@ -18,7 +18,12 @@ RUN cat /tmp/parts/part-* > /tmp/bundle.b64 \
  && tar -xzf /tmp/bundle.tar.gz -C /app \
  && rm -rf /tmp/bundle.b64 /tmp/bundle.tar.gz /tmp/parts
 RUN npm install
-RUN npm run build
+RUN test -n "$NEXT_PUBLIC_API_URL" \
+ && test -n "$NEXT_PUBLIC_SUPABASE_URL" \
+ && test -n "$NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY" \
+ && npm run build \
+ && grep -R -F "$NEXT_PUBLIC_API_URL" /app/.next >/dev/null \
+ && grep -R -F "$NEXT_PUBLIC_SUPABASE_URL" /app/.next >/dev/null
 ENV NODE_ENV=production
 EXPOSE 3000
 CMD ["sh","-lc","npm start -- -p ${PORT:-3000}"]
