@@ -13,10 +13,13 @@ ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
 ENV NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}
 
 COPY parts /tmp/parts
+COPY overlay /tmp/overlay
 RUN cat /tmp/parts/part-* > /tmp/bundle.b64 \
  && node -e "const fs=require('fs');fs.writeFileSync('/tmp/bundle.tar.gz',Buffer.from(fs.readFileSync('/tmp/bundle.b64','utf8').trim(),'base64'))" \
  && tar -xzf /tmp/bundle.tar.gz -C /app \
  && rm -rf /tmp/bundle.b64 /tmp/bundle.tar.gz /tmp/parts
+RUN node /tmp/overlay/apply-overlay.mjs /app \
+ && rm -rf /tmp/overlay
 RUN npm install
 RUN test -n "$NEXT_PUBLIC_API_URL" \
  && test -n "$NEXT_PUBLIC_SUPABASE_URL" \
