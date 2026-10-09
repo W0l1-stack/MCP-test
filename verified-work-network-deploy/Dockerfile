@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 WORKDIR /app
-COPY parts /tmp/parts
+COPY parts-v2 /tmp/parts
 
 RUN cat /tmp/parts/part-*.txt > /tmp/api_bundle.b64 \
     && python - <<'PY'
