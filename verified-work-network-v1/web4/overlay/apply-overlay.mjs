@@ -17,7 +17,8 @@ const copyRoute = (route, sourceName) => {
   console.log(`VerifiedWork overlay: ${route} -> ${path.join(destDir, 'page.tsx')}`);
 };
 
+copyRoute('login', 'login-page.tsx');
 copyRoute('profile', 'profile-page.tsx');
 copyRoute('account', 'account-page.tsx');
 
-console.log('VerifiedWork worker profile overlay applied using app dir:', appDir);
+console.log('VerifiedWork account/profile overlay applied using app dir:', appDir);
